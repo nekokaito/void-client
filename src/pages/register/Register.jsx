@@ -52,7 +52,9 @@ const Register = () => {
                                         <span className="label-text">Role</span>
                                    </label>
                                    <select
-                                        className="select select-bordered w-full max-w-xs" >
+                                        className="select select-bordered w-full max-w-xs"
+                                        {...register('role')}
+                                   >
                                         <option value="buyer">Buyer</option>
                                         <option value="seller">Seller</option>
                                    </select>
