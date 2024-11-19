@@ -1,13 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut,GoogleAuthProvider } from "firebase/auth";
 import { app } from "../firebase/firebase";
 
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({children}) => {
 
      const [user, setUser] = useState(null);
