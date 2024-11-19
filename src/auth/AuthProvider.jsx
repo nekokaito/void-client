@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { createContext, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut,GoogleAuthProvider } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut,GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase/firebase";
+import baseUrl from "../hook/baseURL";
+import axios from "axios";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -21,8 +23,7 @@ const AuthProvider = ({children}) => {
      // Email and Password Registration 
 
      const createUser = (email, password) => {
-          return createUserWithEmailAndPassword(auth, email, password);
-     }
+          return createUserWithEmailAndPassword(auth, email, password)}
 
      // Email and Password Login and Logout
 
@@ -42,6 +43,32 @@ const AuthProvider = ({children}) => {
      const userLogout = () => {
           return signOut(auth);
      }
+
+     // Auth Checking
+
+     useEffect(() => {
+          const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+               setUser(currentUser);
+               if (createUser && currentUser) { 
+                    axios.post(`${baseUrl}/authentication`, { email: currentUser.email }).then(data => {
+                         if (data.data) {
+                              localStorage.setItem('access-token', data?.data?.token)
+                              setLoading(false);
+                         }
+                    });
+               }
+               else {
+                    localStorage.removeItem('access-token');
+                    setLoading(false);
+               }
+
+          });
+          return () => {
+               unsubscribe();
+          }
+
+     }
+          , [createUser])
 
 
      // User Auth Info

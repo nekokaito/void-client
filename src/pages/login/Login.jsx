@@ -1,9 +1,10 @@
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hook/useAuth";
 
 const Login = () => {
-
+     const { googleLogin } = useAuth();
      const navigate = useNavigate();
      const {
           register,
@@ -18,6 +19,12 @@ const Login = () => {
           console.log(data)
      }
 
+     const handleGoogleLogin = () => {
+          googleLogin().then(() => {
+               navigate('/');
+          });
+
+     }
 
      return (
           <div>
