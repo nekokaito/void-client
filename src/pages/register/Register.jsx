@@ -72,11 +72,33 @@ const Register = () => {
                                              required: 'Password is required',
                                              minLength: {
                                                   value: 8,
-                                                  message: 'Password must be at least 8 characters long'
-                                             }
+                                                  message: 'Password must be at least 8 characters long',
+                                             },
+                                             validate: {
+                                                  hasUpperCase: value =>
+                                                       /[A-Z]/.test(value) || 'Password must include at least one uppercase letter',
+                                                  hasLowerCase: value =>
+                                                       /[a-z]/.test(value) || 'Password must include at least one lowercase letter',
+                                                  hasNumber: value =>
+                                                       /[0-9]/.test(value) || 'Password must include at least one number',
+                                                  hasSpecialChar: value =>
+                                                       /[!@#$%^&*(),.?":{}|<>]/.test(value) || 'Password must include at least one special character',
+                                             },
                                         })}
                                    />
-                                   {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+                                   
+                                   {errors.password?.type === 'hasUpperCase' && (
+                                        <p className="text-red-500">{errors.password.message}</p>
+                                   )}
+                                   {errors.password?.type === 'hasLowerCase' && (
+                                        <p className="text-red-500">{errors.password.message}</p>
+                                   )}
+                                   {errors.password?.type === 'hasNumber' && (
+                                        <p className="text-red-500">{errors.password.message}</p>
+                                   )}
+                                   {errors.password?.type === 'hasSpecialChar' && (
+                                        <p className="text-red-500">{errors.password.message}</p>
+                                   )}
                               </div>
                               <label className="label">
                                    <span className="label-text-alt">
