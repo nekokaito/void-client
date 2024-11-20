@@ -16,21 +16,6 @@ const Sidebar = () => {
      const { userLogout } = useAuth();
      const data = UserData();
 
-     const sellerRoute = [
-          {
-               id: 1,
-               route: "/dashboard/my-products",
-               icon: <BiCartAlt />
-          },
-          {
-               id: 2,
-               route: "/dashboard/add-product",
-               icon: <BiCartAdd />
-
-          }
-     ]
-
-
      return (
           <div className="bg-[#818cf8] min-h-screen">
                <h1 className="text-3xl font-bold text-center">Void</h1>
