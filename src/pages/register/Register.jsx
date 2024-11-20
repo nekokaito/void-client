@@ -1,5 +1,10 @@
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import baseUrl from '../../hook/baseURL';
+import { updateProfile } from 'firebase/auth';
+import useAuth from '../../hook/useAuth';
+import toast from 'react-hot-toast';
 
 const Register = () => {
      const {
@@ -7,12 +12,11 @@ const Register = () => {
           handleSubmit,
           formState: { errors }
      } = useForm();
-
+     const navigate = useNavigate();
+     const { createUser } = useAuth();
      const dataSubmit = async (formdata) => {
-          // const { name, email, password, role } = data;
+
           const fileImage = formdata.files[0]
-          console.log(formdata);
-          console.log(fileImage);
 
           const handlePhotoUpload = async () => {
                if (!fileImage) return
@@ -30,9 +34,31 @@ const Register = () => {
                const uploadedImg = await res.json();
                return uploadedImg.url;
           }
-
+          const { name, email, password, role } = formdata;
+          const status = role === 'buyer' ? 'approved' : 'pending';
+          const wishlist = [];
           const photoURL = await handlePhotoUpload();
-          console.log('img', photoURL);
+
+
+          const userData = { name, email, photoURL, password, role, status, wishlist };
+          try {
+               const userCredential = await createUser(email, password);
+               const user = userCredential.user;
+
+               // Update user profile
+               await updateProfile(user, { displayName: name });
+
+               // Save user data to the database
+               const res = await axios.post(`${baseUrl}/users`, userData);
+
+
+               toast.success('Successfully signed up!');
+               navigate('/');
+
+          } catch (error) {
+               toast.error(error.message || 'Registration failed.');
+          }
+
 
 
      }
