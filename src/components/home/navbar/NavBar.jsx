@@ -1,7 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hook/useAuth";
+import UserMenu from "./UserMenu";
+
 
 
 const NavBar = () => {
+
+     const { user } = useAuth();
      const links = <div className="lg:flex gap-3 font-pixel">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/products">Products</NavLink></li>
@@ -42,7 +47,18 @@ const NavBar = () => {
                     </div>
                     <div className="navbar-end">
 
-                         <button className="btn">Button</button>
+                         {
+                              user ? (<div>
+                                   <UserMenu></UserMenu>
+                              </div>) : (<div className='flex gap-2 items-center'>
+                                   <Link to="/login"><button className='btn rounded-xl bg-orange-400 text-white '>Log In</button></Link>
+                                   <Link to="/signup">
+                                        <button className='btn rounded-xl bg-black text-white '>Sign Up</button>
+                                   </Link>
+
+
+                              </div>)
+                         }
                     </div>
                </div>
           </div>
