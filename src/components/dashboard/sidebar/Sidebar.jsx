@@ -43,15 +43,41 @@ const Sidebar = () => {
                          </NavLink>
                     </li>
                     {
-                         data.role === 'seller' ? (<>
-                              <li>
-                                   <NavLink to="/dashboard/my-products">
-                                        <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />My Products</button>
-                                   </NavLink>
-                              </li>
-                              <li>
-                                   <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Add Products</button></NavLink>
-                              </li></>) : ('Null')
+
+                         data.role !== 'admin' ? (
+                              data.role === 'seller' ? (<>
+                                   <li>
+                                        <NavLink to="/dashboard/my-products">
+                                             <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />My Products</button>
+                                        </NavLink>
+                                   </li>
+                                   <li>
+                                        <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Add Products</button></NavLink>
+                                   </li></>) : (
+                                   <>
+                                        <li>
+                                             <NavLink to="/dashboard/my-products">
+                                                  <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />Wishlist</button>
+                                             </NavLink>
+                                        </li>
+                                        <li>
+                                             <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Carts</button></NavLink>
+                                        </li></>
+                              )
+
+                         ) : (
+                              <>
+                                   <li>
+                                        <NavLink to="/dashboard/my-products">
+                                             <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />Mange User</button>
+                                        </NavLink>
+                                   </li>
+                                   <li>
+                                        <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Carts</button></NavLink>
+                                   </li></>
+                         )
+
+
                     }
 
 
