@@ -49,7 +49,7 @@ const Register = () => {
                await updateProfile(user, { displayName: name });
 
                // Save user data to the database
-               const res = await axios.post(`${baseUrl}/users`, userData);
+               await axios.post(`${baseUrl}/users`, userData);
 
 
                toast.success('Successfully signed up!');
