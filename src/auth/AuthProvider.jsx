@@ -1,102 +1,96 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from "react";
-import {
-     getAuth,
-     createUserWithEmailAndPassword,
-     signInWithEmailAndPassword,
-     signInWithPopup,
-     signOut,
-     GoogleAuthProvider,
-     onAuthStateChanged,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut,GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase/firebase";
 import baseUrl from "../hook/baseURL";
 import axios from "axios";
 
-export const AuthContext = createContext(null);
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({ children }) => {
+
+// eslint-disable-next-line react/prop-types
+const AuthProvider = ({children}) => {
+
      const [user, setUser] = useState(null);
      const [loading, setLoading] = useState(true);
+     
 
-     // Email and Password Registration
+
+     // Email and Password Registration 
+
      const createUser = (email, password) => {
-          return createUserWithEmailAndPassword(auth, email, password);
-     };
+          return createUserWithEmailAndPassword(auth, email, password)
+     }
 
-     // Email and Password Login
+     // Email and Password Login and Logout
+
      const userLogin = (email, password) => {
           return signInWithEmailAndPassword(auth, email, password);
-     };
+     }
+
 
      // Google Login
      const googleLogin = () => {
           return signInWithPopup(auth, googleProvider);
-     };
+     }
 
-     // User Logout
+
+     // User LogOut
+
      const userLogout = () => {
           return signOut(auth);
-     };
+     }
 
      // Auth Checking
+
      useEffect(() => {
-          const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-               setLoading(true);
+          const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+               setUser(currentUser);
+               if (createUser && currentUser) { 
+                    axios.post(`${baseUrl}/authentication`, { email: currentUser.email }).then(data => {
+                         if (data.data) {
+                              localStorage.setItem('access-token', data?.data?.token)
 
-               if (currentUser) {
-                    try {
-                         // Send user data to backend and retrieve the token
-                         const authResponse = await axios.post(`${baseUrl}/authentication`, {
-                              email: currentUser.email,
-                         });
-
-                         if (authResponse?.data?.token) {
-                              localStorage.setItem("access-token", authResponse.data.token);
+                              setLoading(false);
                          }
-
-                         // Fetch user details from the backend
-                         const userResponse = await axios.get(`${baseUrl}/user/${currentUser.email}`);
-
-                         // Merge Firebase and Backend user data
-                         setUser({
-                              ...currentUser,
-                              ...userResponse.data,
-                         });
-                    } catch (error) {
-                         console.error("Error during user authentication:", error);
-                    } finally {
-                         setLoading(false);
-                    }
-               } else {
-                    localStorage.removeItem("access-token");
-                    setUser(null);
+                    });
+                    
+               }
+               else {
+                    localStorage.removeItem('access-token');
                     setLoading(false);
                }
-          });
 
+          });
           return () => {
                unsubscribe();
-          };
-     }, []); 
+          }
+
+     }
+          , [createUser])
+
 
      // User Auth Info
+
      const authInfo = {
           user,
           loading,
           createUser,
           userLogin,
           userLogout,
-          googleLogin,
-     };
+          googleLogin
+     }
+
 
      return (
           <AuthContext.Provider value={authInfo}>
                {children}
           </AuthContext.Provider>
+          
      );
 };
 

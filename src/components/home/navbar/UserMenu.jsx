@@ -1,12 +1,14 @@
 
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hook/useAuth';
+import userData from '../../../hook/userData';
 
 const UserMenu = () => {
 
-     const { user, userLogout } = useAuth();
+     const { userLogout } = useAuth();
+     const user = userData();
 
-     console.log(user);
+
      return (
 
           <div className="dropdown dropdown-end">

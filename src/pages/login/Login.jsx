@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import UserData from "../../hook/userData";
 
 const Login = () => {
      const { userLogin, googleLogin } = useAuth();
      const navigate = useNavigate();
      const [serverError, setServerError] = useState("");
-
+     
      const {
           register,
           handleSubmit,
@@ -22,6 +23,7 @@ const Login = () => {
                const { email, password } = data;
                await userLogin(email, password);
                navigate("/");
+               
                toast.success(` Welcome`);
 
           } catch (error) {
