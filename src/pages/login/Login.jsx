@@ -1,34 +1,47 @@
 import { FaGoogle } from "react-icons/fa";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
-     const { googleLogin } = useAuth();
+     const { userLogin, googleLogin } = useAuth();
      const navigate = useNavigate();
+     const [serverError, setServerError] = useState("");
+
      const {
           register,
           handleSubmit,
-          formState: {
-               errors
-          }
+          formState: { errors },
      } = useForm();
 
      const dataSubmit = async (data) => {
-          // const {email, password} = data;
-          console.log(data)
-     }
+          setServerError(""); // Reset error message
+          try {
+               const { email, password } = data;
+               await userLogin(email, password);
+               navigate("/");
+               toast.success(` Welcome`);
 
-     const handleGoogleLogin = () => {
-          googleLogin().then(() => {
-               navigate('/');
-          });
+          } catch (error) {
+               setServerError(error.message || "Failed to login. Please try again.");
+          }
+     };
 
-     }
+     const handleGoogleLogin = async () => {
+          setServerError(""); // Reset error message
+          try {
+               await googleLogin();
+               navigate("/");
+          } catch (error) {
+               setServerError(error.message || "Google login failed. Please try again.");
+          }
+     };
 
      return (
           <div>
-               <div className="hero bg-base-200 min-h-screen">
+               <div className="hero bg-[#818cf8] min-h-screen">
                     <div className="hero-content flex-col lg:flex-row-reverse">
                          <div className="text-center lg:text-left">
                               <h1 className="text-5xl font-bold">Login now!</h1>
@@ -74,8 +87,8 @@ const Login = () => {
                                         </label>
                                    </div>
                                    <div className="form-control flex flex-col gap-3 mt-6">
-                                        <button type='submit' className="btn btn-primary">Login</button>
-                                        <button onClick={handleGoogleLogin} type='submit' className="btn "> <FaGoogle /> Google</button>
+                                        <button type='submit' className="btn bg-[#f471b5] hover:bg-white text-black">Login</button>
+                                        <button onClick={handleGoogleLogin} type='submit' className="btn bg-[#38bdf8] hover:bg-white text-black"> <FaGoogle /> Google</button>
 
                                    </div>
                               </form>
