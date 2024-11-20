@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useEffect, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut,GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase/firebase";
 import baseUrl from "../hook/baseURL";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -13,11 +14,11 @@ const googleProvider = new GoogleAuthProvider();
 
 
 // eslint-disable-next-line react/prop-types
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
      const [user, setUser] = useState(null);
      const [loading, setLoading] = useState(true);
-     
+
 
 
      // Email and Password Registration 
@@ -42,7 +43,9 @@ const AuthProvider = ({children}) => {
      // User LogOut
 
      const userLogout = () => {
+          toast.success('Logged Out');
           return signOut(auth);
+
      }
 
      // Auth Checking
@@ -50,7 +53,7 @@ const AuthProvider = ({children}) => {
      useEffect(() => {
           const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
                setUser(currentUser);
-               if (createUser && currentUser) { 
+               if (createUser && currentUser) {
                     axios.post(`${baseUrl}/authentication`, { email: currentUser.email }).then(data => {
                          if (data.data) {
                               localStorage.setItem('access-token', data?.data?.token)
@@ -58,7 +61,7 @@ const AuthProvider = ({children}) => {
                               setLoading(false);
                          }
                     });
-                    
+
                }
                else {
                     localStorage.removeItem('access-token');
@@ -90,7 +93,7 @@ const AuthProvider = ({children}) => {
           <AuthContext.Provider value={authInfo}>
                {children}
           </AuthContext.Provider>
-          
+
      );
 };
 
