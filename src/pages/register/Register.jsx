@@ -8,9 +8,33 @@ const Register = () => {
           formState: { errors }
      } = useForm();
 
-     const dataSubmit = async (data) => {
+     const dataSubmit = async (formdata) => {
           // const { name, email, password, role } = data;
-          console.log(data)
+          const fileImage = formdata.files[0]
+          console.log(formdata);
+          console.log(fileImage);
+
+          const handlePhotoUpload = async () => {
+               if (!fileImage) return
+
+               const img = new FormData();
+               img.append("file", fileImage);
+               img.append("upload_preset", "void_tech");
+               img.append("cloud_name", "dyvqe1hgj")
+
+               const res = await fetch('https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload', {
+                    method: "POST",
+                    body: img
+               })
+
+               const uploadedImg = await res.json();
+               return uploadedImg.url;
+          }
+
+          const photoURL = await handlePhotoUpload();
+          console.log('img', photoURL);
+
+
      }
      return (
           <div className="hero bg-base-200 min-h-screen">
@@ -46,6 +70,13 @@ const Register = () => {
                                         {...register('email', { required: 'Email is required' })}
                                    />
                                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                              </div>
+                              <div className="form-control">
+                                   <label className="label">
+                                        <span className="label-text">Profile Image</span>
+                                   </label>
+
+                                   <input type="file" className="file-input file-input-bordered w-full max-w-xs" {...register('files')} />
                               </div>
                               <div className="form-control">
                                    <label className="label">
@@ -86,19 +117,21 @@ const Register = () => {
                                              },
                                         })}
                                    />
-                                   
-                                   {errors.password?.type === 'hasUpperCase' && (
-                                        <p className="text-red-500">{errors.password.message}</p>
-                                   )}
-                                   {errors.password?.type === 'hasLowerCase' && (
-                                        <p className="text-red-500">{errors.password.message}</p>
-                                   )}
-                                   {errors.password?.type === 'hasNumber' && (
-                                        <p className="text-red-500">{errors.password.message}</p>
-                                   )}
-                                   {errors.password?.type === 'hasSpecialChar' && (
-                                        <p className="text-red-500">{errors.password.message}</p>
-                                   )}
+                                   <div className='mt-2'>
+                                        {errors.password?.type === 'hasUpperCase' && (
+                                             <p className="text-red-500">{errors.password.message}</p>
+                                        )}
+                                        {errors.password?.type === 'hasLowerCase' && (
+                                             <p className="text-red-500">{errors.password.message}</p>
+                                        )}
+                                        {errors.password?.type === 'hasNumber' && (
+                                             <p className="text-red-500">{errors.password.message}</p>
+                                        )}
+                                        {errors.password?.type === 'hasSpecialChar' && (
+                                             <p className="text-red-500">{errors.password.message}</p>
+                                        )}
+                                   </div>
+
                               </div>
                               <label className="label">
                                    <span className="label-text-alt">
