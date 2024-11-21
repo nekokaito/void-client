@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const MyProductCard = ({ product }) => {
      
-     const { _id, image, title, brand, category, price } = product;
+     const { _id, image, title, brand, category, price} = product;
      return (
           <div>
                <div className="card card-compact bg-[#818df869] w-96 shadow-xl">

@@ -14,6 +14,7 @@ import AddProducts from "../pages/dashboard/add-products/AddProducts";
 import SellerRoute from "./sellerroute/SellerRoute";
 import ProductDetails from "../pages/products/ProductDetails";
 import AddOrUpdateProduct from "../pages/dashboard/update-product/AddOrUpdateProduct";
+import baseUrl from "../hook/baseURL";
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
                },
                {
                     path: "/products/:id",
-                    element: <ProductDetails></ProductDetails>
+                    element: <ProductDetails></ProductDetails>,
+                    loader: ({ params }) => fetch(`${baseUrl}/all-product/${params.id}`)
                },
                {
                     path: "/contact",
