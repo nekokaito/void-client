@@ -14,6 +14,7 @@ import AddProducts from "../pages/dashboard/add-products/AddProducts";
 import SellerRoute from "./sellerroute/SellerRoute";
 import ProductDetails from "../pages/products/ProductDetails";
 
+
 const router = createBrowserRouter([
      {
           path: "/",
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
                {
                     path: "/dashboard/add-products",
                     element: <SellerRoute><AddProducts /></SellerRoute>
+               },
+               {
+                    path: "/dashboard/update-product/:id",
+                    element: <AddOrUpdateProduct></AddOrUpdateProduct>,
+
                }
           ]
      }

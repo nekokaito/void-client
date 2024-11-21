@@ -15,7 +15,7 @@ const Sidebar = () => {
 
      const { userLogout } = useAuth();
      const data = UserData();
-     console.log(data)
+
 
      return (
           <div className="bg-[#818df888] min-h-screen">
