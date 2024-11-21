@@ -13,6 +13,7 @@ import MyProducts from "../pages/dashboard/my-prodcuts/MyProducts";
 import AddProducts from "../pages/dashboard/add-products/AddProducts";
 import SellerRoute from "./sellerroute/SellerRoute";
 import ProductDetails from "../pages/products/ProductDetails";
+import AddOrUpdateProduct from "../pages/dashboard/update-product/AddOrUpdateProduct";
 
 
 const router = createBrowserRouter([

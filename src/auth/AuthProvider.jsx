@@ -53,7 +53,8 @@ const AuthProvider = ({ children }) => {
      useEffect(() => {
           const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
                setUser(currentUser);
-               if (createUser && currentUser) {
+               
+               if (createUser && googleLogin && currentUser) {
                     axios.post(`${baseUrl}/authentication`, { email: currentUser.email }).then(data => {
                          if (data.data) {
                               localStorage.setItem('access-token', data?.data?.token)
@@ -74,7 +75,7 @@ const AuthProvider = ({ children }) => {
           }
 
      }
-          , [createUser])
+          , [])
 
 
      // User Auth Info
