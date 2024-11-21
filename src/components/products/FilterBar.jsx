@@ -4,7 +4,7 @@ import { TbFilter } from "react-icons/tb";
 
 const FilterBar = ({ setSortBrand, setSortCategory, Brands, Categories, handleReset }) => {
      return (
-          <div className="bg-[#818cf8] w-full  rounded-2xl p-4">
+          <div className="bg-[#818df899] w-full  rounded-2xl p-4">
                <div className="mt-10">
 
                </div>

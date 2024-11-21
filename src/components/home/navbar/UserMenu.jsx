@@ -15,7 +15,7 @@ const UserMenu = () => {
 
           <div className="dropdown dropdown-end border-white">
                <div tabIndex={0} role="button">
-                    <img className=' w-11 rounded-full' src={`${user?.photoURL || "/profile.png"}`} alt="" />
+                    <img className=' w-12 h-12 object-cover rounded-full' src={`${user?.photoURL || "/profile.png"}`} alt="" />
                </div>
 
                <ul tabIndex={0} className="dropdown-content flex flex-col gap-2 menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">

@@ -14,7 +14,7 @@ const NavBar = () => {
           <li><NavLink to="/about">About</NavLink></li>
      </div>
      return (
-          <div>
+          <div className=" sticky top-0 z-10">
                <div className="navbar bg-[#818df8c1]">
                     <div className="navbar-start">
                          <div className="dropdown">
@@ -51,7 +51,7 @@ const NavBar = () => {
                               user ? (<div>
                                    <UserMenu></UserMenu>
                               </div>) : (<div className='flex gap-2 items-center'>
-                                   <Link to="/login"><button className='btn rounded-xl bg-[#f471b5] text-white border-none'>Log In</button></Link>
+                                   <Link to="/login"><button className='btn rounded-xl bg-[#f471b5] text-white border-none hover:bg-[#ffffff] hover:text-black'>Log In</button></Link>
                                    <Link to="/signup">
                                         <button className='btn rounded-xl bg-black hover:bg-[#38bdf8] text-white border-none'>Sign Up</button>
                                    </Link>
