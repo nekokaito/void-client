@@ -15,6 +15,7 @@ import SellerRoute from "./sellerroute/SellerRoute";
 import ProductDetails from "../pages/products/ProductDetails";
 import AddOrUpdateProduct from "../pages/dashboard/update-product/AddOrUpdateProduct";
 import baseUrl from "../hook/baseURL";
+import ManageUser from "../pages/dashboard/manage-user/ManageUser";
 
 
 const router = createBrowserRouter([
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
                     path: "/dashboard/update-product/:id",
                     element: <AddOrUpdateProduct></AddOrUpdateProduct>,
 
+               },
+               //admin Routes
+               {
+                    path: "/dashboard/manage-user",
+                    element: <ManageUser></ManageUser>
                }
           ]
      }

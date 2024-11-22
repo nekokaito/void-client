@@ -56,8 +56,8 @@ const Sidebar = () => {
                               {
                                    data.role === 'admin' ? (<>
                                         <li>
-                                             <NavLink to="/dashboard/my-products">
-                                                  <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><FaUserGear />Mange User</button>
+                                             <NavLink to="/dashboard/manage-user">
+                                                  <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><FaUserGear />Manage User</button>
                                              </NavLink>
                                         </li>
                                    </>) : (<></>)
