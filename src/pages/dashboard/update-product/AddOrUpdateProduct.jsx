@@ -57,8 +57,14 @@ const AddOrUpdateProduct = () => {
      const dataSubmit = async (data) => {
           const fileImage = data.image?.[0];
 
+          // Function to handle image upload or fallback to existing image
           const handlePhotoUpload = async () => {
-               if (!fileImage) return product?.image;
+               if (!fileImage) {
+                    // If no new image is uploaded, use the existing product image
+                    return product?.image;
+               }
+
+               // If a new image is uploaded, proceed to upload to Cloudinary
                const img = new FormData();
                img.append("file", fileImage);
                img.append("upload_preset", "void_tech");
@@ -70,14 +76,14 @@ const AddOrUpdateProduct = () => {
                });
 
                const uploadedImg = await res.json();
-               return uploadedImg.url;
+               return uploadedImg.url; // Return the uploaded image URL
           };
 
           try {
-               const image = await handlePhotoUpload();
+               const image = await handlePhotoUpload(); // New image or fallback to existing image
                const payload = {
                     title: data.title || product?.title,
-                    image,
+                    image: image || product?.image || product.image,
                     brand: data.brand || product?.brand,
                     stock: data.stock || product?.stock,
                     price: parseFloat(data.price) || product?.price,
@@ -86,11 +92,10 @@ const AddOrUpdateProduct = () => {
                     sellerEmail: user.email,
                };
 
-
                let response;
 
-               if (product) {
-
+               if (product && product._id) {
+                    // Update existing product
                     response = await axios.put(`${baseUrl}/update-product/${product._id}`, payload, {
                          headers: {
                               Authorization: `Bearer ${token}`,
@@ -98,7 +103,7 @@ const AddOrUpdateProduct = () => {
                     });
                     toast.success("Product Updated Successfully");
                } else {
-
+                    // Add new product
                     response = await axios.post(`${baseUrl}/add-products`, payload, {
                          headers: {
                               Authorization: `Bearer ${token}`,
@@ -108,7 +113,7 @@ const AddOrUpdateProduct = () => {
                }
 
                if (response.status === 200 || response.status === 201) {
-                    reset();
+                    reset(); // Reset form only on successful response
                } else {
                     setMessage("Failed to process the product. Please try again.");
                }
@@ -117,6 +122,8 @@ const AddOrUpdateProduct = () => {
                toast.error(error.message);
           }
      };
+
+
 
      return (
           <div>

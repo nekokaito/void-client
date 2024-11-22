@@ -6,12 +6,12 @@ const ProductCard = ({ product }) => {
 
      return (
           <div>
-               <div className="card card-compact bg-[#818df869] w-96 shadow-xl">
-                    <figure>
+               <div className="card card-compact bg-[#818df869] w-96  shadow-xl">
+                    <figure className="bg-white p-5">
                          <img
                               src={image}
                               alt="Shoes"
-                              className='w-1/2 rounded-3xl h-200 p-5 object-cover' />
+                              className='w-full rounded-3xl h-[300px] p-5 object-cover' />
                     </figure>
                     <div className="card-body">
                          <h2 className="card-title text-white">{title}</h2>
