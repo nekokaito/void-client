@@ -23,9 +23,9 @@ const ManageUser = () => {
           fetchUsers();
      }, []);
 
-     console.log(regUsers)
+
      return (
-          <div>
+          <div className=" mt-20 container mx-auto">
 
                <h1 className="text-3xl font-bold text-center">Manage User</h1>
 

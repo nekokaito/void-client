@@ -52,7 +52,7 @@ const UserTableBody = ({ regUser }) => {
                          <div className="avatar">
                               <div className="mask mask-squircle h-12 w-12">
                                    <img
-                                        src={photoURL}
+                                        src={photoURL || "/profile.png"}
                                         alt="Avatar Tailwind CSS Component" />
                               </div>
                          </div>

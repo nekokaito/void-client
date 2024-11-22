@@ -1,13 +1,14 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import UserData from "../../hook/userData";
 
 const ProductDetails = () => {
 
 
-
+     const user = UserData();
      const product = useLoaderData();
      console.log(product)
 
-     const { image, title, description, brand, category, price, stock } = product;
+     const { _id, image, title, description, brand, category, price, stock, sellerEmail } = product;
 
 
      return (
@@ -25,11 +26,22 @@ const ProductDetails = () => {
                     <div>
                          <h1 className="text-3xl">{price} $</h1>
                     </div>
+                    {
+                         user.role === 'buyer' ? (<div className="flex justify-around gap-5">
 
-                    <div className="flex justify-around gap-5">
-                         <button className="btn">Wishlist</button>
-                         <button className="btn">Cart</button>
-                    </div>
+                              <button className="btn">Wishlist</button>
+                              <button className="btn">Cart</button>
+                         </div>) : (
+                              <div className="flex justify-center">
+                                   {
+                                        user.email === sellerEmail ? (<Link to={`/dashboard/update-product/${_id}`}><button className="btn">Edit Product</button></Link>) : ('')
+                                   }
+
+
+                              </div>
+                         )
+                    }
+
                </div>
           </div>
      );

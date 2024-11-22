@@ -22,12 +22,12 @@ const Sidebar = () => {
           <div className="bg-[#818df888] min-h-screen">
                <div className="flex flex-col rounded-2xl relative">
                     <div className="bg-black">
-                         <img className=" object-cover opacity-20 " src={data.photoURL} alt="" />
+                         <img className=" object-cover opacity-20 " src={data.photoURL || "/profile.png"} alt="" />
                     </div>
 
                     <div className="absolute flex gap-2 bottom-2 left-4">
                          <div>
-                              <img className="w-12 h-12 object-cover rounded-full" src={data.photoURL} alt="" />
+                              <img className="w-12 h-12 object-cover rounded-full" src={data.photoURL || "/profile.png"} alt="" />
                          </div>
                          <div>
                               <h1 className="text-4xl font-bold text-white stroke-back-200">{data.name}</h1>
