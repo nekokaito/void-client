@@ -6,6 +6,7 @@ import { BiHome } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import UserData from "../../../hook/userData";
 import useAuth from "../../../hook/useAuth";
+import { FaUserGear } from "react-icons/fa6";
 
 
 
@@ -31,6 +32,11 @@ const Sidebar = () => {
                          <div>
                               <h1 className="text-4xl font-bold text-white stroke-back-200">{data.name}</h1>
                               <p className=" ">{data.email}</p>
+                              {
+                                   data.role && data.role === 'admin' && (
+                                        <div className="badge badge-secondary">Administrator</div>
+                                   )
+                              }
                          </div>
 
                     </div>
@@ -45,38 +51,37 @@ const Sidebar = () => {
                     </li>
                     {
 
-                         data.role !== 'admin' ? (
-                              data.role === 'seller' ? (<>
-                                   <li>
-                                        <NavLink to="/dashboard/my-products">
-                                             <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />My Products</button>
-                                        </NavLink>
-                                   </li>
-                                   <li>
-                                        <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Add Products</button></NavLink>
-                                   </li></>) : (
-                                   <>
+
+                         data.role !== 'buyer' ? (<>
+                              {
+                                   data.role === 'admin' ? (<>
                                         <li>
                                              <NavLink to="/dashboard/my-products">
-                                                  <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />Wishlist</button>
+                                                  <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><FaUserGear />Mange User</button>
                                              </NavLink>
                                         </li>
-                                        <li>
-                                             <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Carts</button></NavLink>
-                                        </li></>
-                              )
-
-                         ) : (
+                                   </>) : (<></>)
+                              }
+                              <li>
+                                   <NavLink to="/dashboard/my-products">
+                                        <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />My Products</button>
+                                   </NavLink>
+                              </li>
+                              <li>
+                                   <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Add Products</button></NavLink>
+                              </li></>) : (
                               <>
                                    <li>
                                         <NavLink to="/dashboard/my-products">
-                                             <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />Mange User</button>
+                                             <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />Wishlist</button>
                                         </NavLink>
                                    </li>
                                    <li>
                                         <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Carts</button></NavLink>
                                    </li></>
                          )
+
+
 
 
                     }

@@ -15,7 +15,7 @@ export default function SellerRoute({ children }) {
 
           return <Loading></Loading>
      }
-     if (user && userInfo.role === 'seller') {
+     if (user && userInfo.role === 'seller' || userInfo.role === 'admin') {
           return children;
      }
 
