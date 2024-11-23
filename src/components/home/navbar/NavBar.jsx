@@ -1,16 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hook/useAuth";
 import UserMenu from "./UserMenu";
+import UserData from "../../../hook/userData";
 
 
 
 const NavBar = () => {
 
      const { user } = useAuth();
+     const isUser = UserData();
      const links = <div className="lg:flex gap-3 font-pixel">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/products">Products</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
+          {
+               (isUser.role !== 'seller' && isUser.role !== 'admin') && (
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+               )
+          }
+
+
           <li><NavLink to="/about">About</NavLink></li>
      </div>
      return (
