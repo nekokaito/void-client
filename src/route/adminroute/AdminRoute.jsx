@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import useAuth from '../../hook/useAuth';
 import UserData from '../../hook/userData';

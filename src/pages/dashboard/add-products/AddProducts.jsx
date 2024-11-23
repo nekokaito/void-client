@@ -66,6 +66,7 @@ const AddProducts = () => {
 
                if (response.status === 200 || response.status === 201) {
                     toast.success('Product Added Successfully')
+                    console.log(response.data)
                     reset();
                } else {
                     setMessage("Failed to add the product. Please try again.");

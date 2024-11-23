@@ -18,7 +18,7 @@ const Contact = () => {
 
           try {
 
-               await axios.post(`${baseUrl}/add-products`, sendMessage);
+               await axios.post(`${baseUrl}/add-message`, sendMessage);
 
 
                toast("Message has been sent,\n\n we will contact you in 24 hours.", {

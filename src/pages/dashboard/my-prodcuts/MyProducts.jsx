@@ -6,7 +6,7 @@ import useAuth from "../../../hook/useAuth";
 
 const MyProducts = () => {
 
-     
+
      const { user } = useAuth();
      const userEmail = user.email;
      const [myProducts, setMyProducts] = useState([]);
@@ -32,6 +32,7 @@ const MyProducts = () => {
           fetchProducts();
      }, [user.email, token]);
 
+     console.log(myProducts)
 
      return (
           <div className="p-4">

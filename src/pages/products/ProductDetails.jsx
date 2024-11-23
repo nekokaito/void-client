@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import UserData from "../../hook/userData";
 import axios from "axios";
 import baseUrl from "../../hook/baseURL";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
 
@@ -14,10 +15,27 @@ const ProductDetails = () => {
      const { _id, image, title, description, brand, category, price, stock, sellerEmail } = product;
 
      const handleWishlist = async () => {
-          await axios.patch(`${baseUrl}/wishlist/add`, { email: user.email, productId: _id })
+          try {
+               await axios.patch(`${baseUrl}/wishlist/add`, { email: user.email, productId: _id })
+               toast.success('Added to WishList')
+          }
+          catch (err) {
+               console.log(err);
+
+          }
+
      }
      const handleCartlist = async () => {
-          await axios.patch(`${baseUrl}/cartlist/add`, { email: user.email, productId: _id }).then(res => console.log(res.data))
+
+          try {
+               await axios.patch(`${baseUrl}/cartlist/add`, { email: user.email, productId: _id }).then(res => console.log(res.data))
+               toast.success('Added to CartList')
+          }
+
+          catch (err) {
+               console.log(err)
+          }
+
      }
 
 

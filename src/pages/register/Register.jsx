@@ -41,7 +41,7 @@ const Register = () => {
           const photoURL = await handlePhotoUpload();
 
 
-          const userData = { name, email, photoURL, password, role, status, wishlist, cartlist};
+          const userData = { name, email, photoURL, password, role, status, wishlist, cartlist };
           try {
                const userCredential = await createUser(email, password);
                const user = userCredential.user;
@@ -66,13 +66,9 @@ const Register = () => {
      return (
           <div className="hero bg-base-200 min-h-screen">
                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
-                         <h1 className="text-5xl font-bold">Sign Up now!</h1>
-                         <p className="py-6">
-                              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-                         </p>
-                    </div>
+
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                         <h1 className='text-3xl text-center mt-2'>Sign Up</h1>
                          <form className="card-body" onSubmit={handleSubmit(dataSubmit)}>
                               <div className="form-control">
                                    <label className="label">

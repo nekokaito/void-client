@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const ReviewCard = ({ review }) => {
      const { name, userreview } = review
      return (
