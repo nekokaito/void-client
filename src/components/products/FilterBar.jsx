@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 
 import { GrPowerReset } from "react-icons/gr";
-import { TbFilter } from "react-icons/tb";
+
 
 const FilterBar = ({ setSortBrand, setSortCategory, Brands, Categories, handleReset }) => {
      return (

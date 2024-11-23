@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { IoSearchOutline } from "react-icons/io5";
 
 

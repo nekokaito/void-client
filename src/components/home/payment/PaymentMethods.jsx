@@ -13,16 +13,16 @@ const PaymentMethods = () => {
 
                {/* Payments Box */}
                <div className="flex flex-col lg:grid gap-6 lg:grid-rows-4 lg:grid-cols-2 p-8">
-                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-blue-500/60">
+                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-[#6671c6]">
                          <img className="w-24" src="images/Mastercard-logo.png" alt="Mastercard" />
                     </div>
-                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-blue-500/60 col-start-2">
+                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-[#6671c6] col-start-2">
                          <img className="w-24" src="images/Visa_Logo.png" alt="Visa" />
                     </div>
-                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-blue-500/60 row-start-3">
+                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-[#6671c6] row-start-3">
                          <img className="w-24" src="images/Black_PNG.png" alt="KO" />
                     </div>
-                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-blue-500/60 col-start-2">
+                    <div className="payments-way flex justify-center items-center rounded-xl bg-gray-200/80 w-52 h-36 transition-all duration-500 hover:bg-[#6671c6] col-start-2">
                          <img className="w-24" src="images/wechatpay.png" alt="WeChat Pay" />
                     </div>
                </div>
