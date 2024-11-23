@@ -37,10 +37,11 @@ const Register = () => {
           const { name, email, password, role } = formdata;
           const status = role === 'buyer' ? 'approved' : 'pending';
           const wishlist = [];
+          const cartlist = [];
           const photoURL = await handlePhotoUpload();
 
 
-          const userData = { name, email, photoURL, password, role, status, wishlist };
+          const userData = { name, email, photoURL, password, role, status, wishlist, cartlist};
           try {
                const userCredential = await createUser(email, password);
                const user = userCredential.user;

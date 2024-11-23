@@ -77,12 +77,12 @@ const Sidebar = () => {
                               </li></>) : (
                               <>
                                    <li>
-                                        <NavLink to="/dashboard/my-products">
+                                        <NavLink to="/dashboard/wishlist">
                                              <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAlt />Wishlist</button>
                                         </NavLink>
                                    </li>
                                    <li>
-                                        <NavLink to="/dashboard/add-products"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Carts</button></NavLink>
+                                        <NavLink to="/dashboard/cartlist"><button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><BiCartAdd />Carts</button></NavLink>
                                    </li></>
                          )
 

@@ -18,6 +18,8 @@ import baseUrl from "../hook/baseURL";
 import ManageUser from "../pages/dashboard/manage-user/ManageUser";
 import AdminRoute from "./adminroute/AdminRoute";
 import Messages from "../pages/dashboard/messages/Messages";
+import Wishlist from "../pages/dashboard/wishlist/Wishlist";
+import CartList from "../pages/dashboard/cartlist/CartList";
 
 
 const router = createBrowserRouter([
@@ -63,6 +65,17 @@ const router = createBrowserRouter([
                {
                     path: "/dashboard/",
                     element: <Overview></Overview>
+               },
+
+               //Buyer Routes
+               {
+                    path: "/dashboard/wishlist",
+                    element: <Wishlist></Wishlist>
+
+               },
+               {
+                    path: "/dashboard/cartlist",
+                    element: <CartList />
                },
                //Seller Routes
                {

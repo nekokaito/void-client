@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({product}) => {
      const { _id, image, title, brand, category, price } = product;
 
 
