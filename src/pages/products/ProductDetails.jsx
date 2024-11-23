@@ -14,7 +14,10 @@ const ProductDetails = () => {
      const { _id, image, title, description, brand, category, price, stock, sellerEmail } = product;
 
      const handleWishlist = async () => {
-          await axios.patch(`${baseUrl}/wishlist/add`, { email: user.email, productId: _id }).then(res => console.log(res.data))
+          await axios.patch(`${baseUrl}/wishlist/add`, { email: user.email, productId: _id })
+     }
+     const handleCartlist = async () => {
+          await axios.patch(`${baseUrl}/cartlist/add`, { email: user.email, productId: _id }).then(res => console.log(res.data))
      }
 
 
@@ -38,7 +41,7 @@ const ProductDetails = () => {
                          user.role === 'buyer' ? (<div className="flex justify-around gap-5">
 
                               <button onClick={handleWishlist} className="btn">Wishlist</button>
-                              <button className="btn">Cart</button>
+                              <button onClick={handleCartlist} className="btn">Cart</button>
                          </div>) : (
                               <div className="flex justify-center">
                                    {

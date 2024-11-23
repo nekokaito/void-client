@@ -11,7 +11,7 @@ const AddProducts = () => {
      const {
           register,
           handleSubmit,
-          reset, 
+          reset,
           formState: { errors }
      } = useForm();
 

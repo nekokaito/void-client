@@ -30,7 +30,7 @@ const Wishlist = () => {
           fetchWishList();
      }, [userData, token]);
 
-     console.log(wishList)
+     
 
      return (
           <div className="container mx-auto">
@@ -39,7 +39,7 @@ const Wishlist = () => {
                {wishList.length > 0 ? (
                     <div className="grid p-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                          {wishList.map((item) => (
-                              <ProductCard key={item._id} product={item} isWishList></ProductCard>
+                              <ProductCard key={item._id} product={item}></ProductCard>
                          ))}
                     </div>
                ) : (

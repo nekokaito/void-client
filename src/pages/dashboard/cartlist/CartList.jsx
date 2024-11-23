@@ -40,10 +40,10 @@ const CartList = () => {
           <div className="container mx-auto">
 
                <h1 className="text-3xl font-bold text-center my-10">My CartList</h1>
-               {CartList.length > 0 ? (
+               {cartList.length > 0 ? (
                     <div className="grid p-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                         {CartList.map((item) => (
-                              <ProductCard key={item._id} product={item} isWishList></ProductCard>
+                         {cartList.map((item) => (
+                              <ProductCard key={item._id} product={item} ></ProductCard>
                          ))}
                     </div>
                ) : (
