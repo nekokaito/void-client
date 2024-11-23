@@ -68,7 +68,7 @@ const Products = () => {
                     <div className="lg:ml-10 lg:col-span-10"> {loading ? <Loading></Loading> :
                          <> {products.length === 0 ? <div className="min-w-full min-h-screen flex justify-center items-center">
                               <h1 className="font-bold text-3xl">No Product Found</h1>
-                         </div> : <div className="grid p-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                         </div> : <div className="grid p-10 lg:p-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                               {products.map((product) => <ProductCard key={product._Id} product={product} />)}
                          </div>
                          }
