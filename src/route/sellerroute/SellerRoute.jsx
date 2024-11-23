@@ -10,7 +10,7 @@ export default function SellerRoute({ children }) {
      const { user, loading } = useAuth();
      const userInfo = UserData();
      const location = useLocation();
-     console.log(userInfo.role);
+    
      if (loading || !userInfo.role) {
 
           return <Loading></Loading>

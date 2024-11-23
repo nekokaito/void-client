@@ -81,7 +81,7 @@ const UserTableBody = ({ regUser }) => {
 
                </td>
                <th>
-                    {currentUser === email ? (<button onClick={handleRemoveUser} className="btn bg-red-500" disabled>Remove</button>) : (<button onClick={handleRemoveUser} className="btn bg-red-500">Remove</button>)}
+                    {currentUser === email ? ('') : (<button onClick={handleRemoveUser} className="btn bg-red-500">Remove</button>)}
 
                </th>
           </tr>

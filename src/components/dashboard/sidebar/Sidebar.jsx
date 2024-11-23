@@ -3,7 +3,7 @@ import { BiBarChart } from "react-icons/bi"
 import { BiCartAlt } from "react-icons/bi";
 import { BiCartAdd } from "react-icons/bi";
 import { BiHome } from "react-icons/bi";
-import { MdLogout } from "react-icons/md";
+import { MdLogout, MdMessage } from "react-icons/md";
 import UserData from "../../../hook/userData";
 import useAuth from "../../../hook/useAuth";
 import { FaUserGear } from "react-icons/fa6";
@@ -58,6 +58,11 @@ const Sidebar = () => {
                                         <li>
                                              <NavLink to="/dashboard/manage-user">
                                                   <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><FaUserGear />Manage User</button>
+                                             </NavLink>
+                                        </li>
+                                        <li>
+                                             <NavLink to="/dashboard/messages">
+                                                  <button className="btn w-full border-none hover:bg-[#f471b5] hover:text-black"><MdMessage />Messages</button>
                                              </NavLink>
                                         </li>
                                    </>) : (<></>)

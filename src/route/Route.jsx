@@ -16,6 +16,8 @@ import ProductDetails from "../pages/products/ProductDetails";
 import AddOrUpdateProduct from "../pages/dashboard/update-product/AddOrUpdateProduct";
 import baseUrl from "../hook/baseURL";
 import ManageUser from "../pages/dashboard/manage-user/ManageUser";
+import AdminRoute from "./adminroute/AdminRoute";
+import Messages from "../pages/dashboard/messages/Messages";
 
 
 const router = createBrowserRouter([
@@ -79,7 +81,11 @@ const router = createBrowserRouter([
                //admin Routes
                {
                     path: "/dashboard/manage-user",
-                    element: <ManageUser></ManageUser>
+                    element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
+               },
+               {
+                    path: "/dashboard/messages",
+                    element: <AdminRoute><Messages></Messages></AdminRoute>
                }
           ]
      }

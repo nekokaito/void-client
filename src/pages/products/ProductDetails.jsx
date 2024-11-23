@@ -1,14 +1,22 @@
 import { Link, useLoaderData } from "react-router-dom";
 import UserData from "../../hook/userData";
+import axios from "axios";
+import baseUrl from "../../hook/baseURL";
 
 const ProductDetails = () => {
 
 
+
      const user = UserData();
      const product = useLoaderData();
-     console.log(product)
+
 
      const { _id, image, title, description, brand, category, price, stock, sellerEmail } = product;
+
+     const handleWishlist = async () => {
+          await axios.patch(`${baseUrl}/wishlist/add`, { email: user.email, productId: _id }).then(res => console.log(res.data))
+     }
+
 
 
      return (
@@ -29,7 +37,7 @@ const ProductDetails = () => {
                     {
                          user.role === 'buyer' ? (<div className="flex justify-around gap-5">
 
-                              <button className="btn">Wishlist</button>
+                              <button onClick={handleWishlist} className="btn">Wishlist</button>
                               <button className="btn">Cart</button>
                          </div>) : (
                               <div className="flex justify-center">
